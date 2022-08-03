@@ -4,9 +4,12 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from 'react-hot-toast';
+import ResponsiveAppBar from '../AppBar/AppBar';
 
 export default function TotalEarning() {
     const [open, setOpen] = React.useState(false);
+    const [cartLength, setCartLength] = React.useState([]);
+
     const navigate = useNavigate();
     const [product, setProduct] = useState([])
     const getProduct = async (id) => {
@@ -24,6 +27,8 @@ export default function TotalEarning() {
     }, []);
     return (
         <>
+            <ResponsiveAppBar cartLength={cartLength} />
+
             <div className='container'>
                 <div class="back-button" onClick={() => goBack()}>
                     <div class="arrow-wrap">

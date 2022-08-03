@@ -11,6 +11,7 @@ import { Box, Container } from '@mui/system';
 import { Button, Grid } from '@mui/material';
 import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
+import ResponsiveAppBar from '../AppBar/AppBar';
 
 const ExpandMore = styled((props) => {
     const { expand, ...other } = props;
@@ -26,6 +27,7 @@ const ExpandMore = styled((props) => {
 export default function HomePage() {
     const getId = localStorage.getItem('userId');
     const [product, setProduct] = React.useState([]);
+    const [cartLength, setCartLength] = React.useState([]);
     const getProductOnclick = async () => {
         const response = await axios.get(
             'http://localhost:8000/products/');
@@ -43,78 +45,93 @@ export default function HomePage() {
                 "img": i.img,
 
             });
+            console.log(i);
             toast.success(`successfully added!`)
+            const length = res.length;
+            console.log('lelel', length);
 
         };
         addData();
+        getCartItmes();
 
     }
+    const getCartItmes = async () => {
+        const response = await axios.get(
+            'http://localhost:8000/cart/');
+        setCartLength(response.data);
+        console.log('cart lenth', response.data);
+    }
     React.useEffect(() => {
-        getProductOnclick()
+        getProductOnclick();
+        getCartItmes();
     }, []);
     return (
-        <Container>
-            <>
-                <Box sx={{ flexGrow: 1 }}>
-                    <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-                        <Toaster />
+        <>
+            <ResponsiveAppBar cartLength={cartLength} />
 
-                        {product.map((i) => {
-                            return (
-                                <>
-                                    <Grid item xs={2} sm={4} md={4} key={i}>
-                                        <Card sx={{ maxWidth: 345, mt: 3 }}>
+            <Container>
+                <>
+                    <Box sx={{ flexGrow: 1 }}>
+                        <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+                            <Toaster />
 
-                                            <CardMedia
-                                                component="img"
-                                                height="130"
-                                                image={i.img}
-                                                alt="Paella dish"
-                                            />
-                                            <CardContent>
-                                                <Typography sx={{ mt: 1 }} component="h1" variant="h5">
-                                                    {i.title}
-                                                </Typography>
-                                                <Typography variant="body2" color="text.secondary">
-                                                    {i.description}
-                                                </Typography>
-                                                <Typography sx={{ mt: 2 }} component="h1" variant="h5">
-                                                    {i.price}
-                                                </Typography>
+                            {product.map((i) => {
+                                return (
+                                    <>
+                                        <Grid item xs={2} sm={4} md={4} key={i}>
+                                            <Card sx={{ maxWidth: 345, mt: 3 }}>
 
-                                            </CardContent>
-                                            <CardActions >
-                                                {getId &&
+                                                <CardMedia
+                                                    component="img"
+                                                    height="130"
+                                                    image={i.img}
+                                                    alt="Paella dish"
+                                                />
+                                                <CardContent>
+                                                    <Typography sx={{ mt: 1 }} component="h1" variant="h5">
+                                                        {i.title}
+                                                    </Typography>
+                                                    <Typography variant="body2" color="text.secondary">
+                                                        {i.description}
+                                                    </Typography>
+                                                    <Typography sx={{ mt: 2 }} component="h1" variant="h5">
+                                                        {i.price}
+                                                    </Typography>
 
-                                                    <Button style={{ background: '#2E3B55' }}
-                                                        type="submit"
-                                                        fullWidth
-                                                        variant="contained"
-                                                        sx={{ mt: 0, mb: 2 }}
+                                                </CardContent>
+                                                <CardActions >
+                                                    {getId &&
 
-                                                        onClick={() => handleAddToCart(i)}
-                                                    >
-                                                        Add to Cart
-                                                    </Button>
-                                                }
+                                                        <Button style={{ background: '#2E3B55' }}
+                                                            type="submit"
+                                                            fullWidth
+                                                            variant="contained"
+                                                            sx={{ mt: 0, mb: 2 }}
 
-                                            </CardActions>
+                                                            onClick={() => handleAddToCart(i)}
+                                                        >
+                                                            Add to Cart
+                                                        </Button>
+                                                    }
 
-
-                                        </Card>
-
-                                    </Grid>
-                                </>
+                                                </CardActions>
 
 
-                            )
-                        })}
-                    </Grid>
-                </Box>
+                                            </Card>
+
+                                        </Grid>
+                                    </>
+
+
+                                )
+                            })}
+                        </Grid>
+                    </Box>
 
 
 
-            </>
-        </Container >
+                </>
+            </Container >
+        </>
     );
 }

@@ -64,6 +64,9 @@ export default function SignUp() {
         setFile(e.target.files[0])
         setImg(URL.createObjectURL(e.target.files[0]));
     }
+    const goBack = () => {
+        navigate('/');
+    }
     const onSubmit = async () => {
 
         const fname = fullName.current.value
@@ -97,6 +100,13 @@ export default function SignUp() {
     return (
         <ThemeProvider theme={theme}>
             <Container style={{ background: 'white', borderRadius: '16px' }} component="main" maxWidth="xs">
+                <div className="back-button" onClick={() => goBack()}>
+                    <div className="arrow-wrap">
+                        <span className="arrow-part-1"></span>
+                        <span className="arrow-part-2"></span>
+                        <span className="arrow-part-3"></span>
+                    </div>
+                </div>
                 <CssBaseline />
                 <Box
                     sx={{
@@ -231,7 +241,7 @@ export default function SignUp() {
                         <Grid container sx={{ mt: 3 }} justifyContent="flex-end">
                             <Grid item>
                                 Already have an account?
-                                <Link to='/' variant="body2">
+                                <Link to='/login' variant="body2">
                                     Sign in
                                 </Link>
                             </Grid>

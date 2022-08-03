@@ -4,11 +4,14 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from 'react-hot-toast';
+import ResponsiveAppBar from '../AppBar/AppBar';
 
 export default function Orders() {
     const [open, setOpen] = React.useState(false);
     const navigate = useNavigate();
-    const [product, setProduct] = useState([])
+    const [product, setProduct] = useState([]);
+    const [cartLength, setCartLength] = React.useState([]);
+
     const getProduct = async (id) => {
         const response = await axios.get(
             'http://localhost:8000/cart/');
@@ -22,7 +25,6 @@ export default function Orders() {
         setOpen(true);
         const response = await axios.delete(
             'http://localhost:8000/cart/' + id);
-        console.log(response.data);
         setOpen(false);
         toast.success(`Product Canceld Successfully`)
         getProduct();
@@ -36,6 +38,8 @@ export default function Orders() {
     }, []);
     return (
         <>
+            <ResponsiveAppBar cartLength={cartLength} />
+
             <div className='container'>
                 <div class="back-button" onClick={() => goBack()}>
                     <div class="arrow-wrap">
@@ -101,13 +105,13 @@ export default function Orders() {
                                         </DialogActions>
                                     </Dialog>
 
-                                    <Toaster />
                                 </>
                             )
                         })}
                     </div>
                 </div>
             </div>
+            <Toaster />
 
         </>
     )

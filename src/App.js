@@ -23,7 +23,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <ResponsiveAppBar />
+        {/* <ResponsiveAppBar /> */}
         <Routes>
           <Route path='/login' element={<><Protected Cmp={Login} /></>} />
           <Route path='/signup' element={<><Protected Cmp={SignUp} /></>} />

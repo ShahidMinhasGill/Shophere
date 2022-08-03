@@ -31,7 +31,9 @@ import { Grid } from '@mui/material';
 import { create } from 'ipfs-http-client';
 import toast, { Toaster } from 'react-hot-toast';
 const client = create('https://ipfs.infura.io:5001/api/v0');
-const ResponsiveAppBar = () => {
+const ResponsiveAppBar = ({ cartLength }) => {
+    console.log('total lentgh', cartLength.length);
+    const totalInCart = cartLength.length;
     const getId = localStorage.getItem('userId');
     const [isLoggedIn, setisLoggedIn] = React.useState(false);
 
@@ -213,7 +215,7 @@ const ResponsiveAppBar = () => {
                                 <Tooltip title="Open settings">
                                     <IconButton aria-label="cart">
                                         <LinkRouterDom to='/cart-product'>
-                                            <StyledBadge badgeContent={length} color="secondary">
+                                            <StyledBadge badgeContent={totalInCart} color="secondary">
                                                 <ShoppingCartIcon style={{ color: 'white' }} />
                                             </StyledBadge>
                                         </LinkRouterDom>
@@ -225,8 +227,8 @@ const ResponsiveAppBar = () => {
                             </Box>
                         }
                         {getId == null &&
-                            <LinkRouterDom to='/login'>
-                                <Button >Login</Button>
+                            <LinkRouterDom to='/login' sx={{ textDecoration: 'none' }}>
+                                <Button variant="outlined" sx={{ textDecoration: 'none', color: 'white' }}>Login</Button>
                             </LinkRouterDom>
                         }
                         <Box sx={{ mx: 4, flexGrow: 0 }}>

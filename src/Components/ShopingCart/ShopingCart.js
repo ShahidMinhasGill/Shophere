@@ -5,12 +5,20 @@ import { Button, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, 
 import { Box } from '@mui/system';
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from 'react-hot-toast';
+import ResponsiveAppBar from '../AppBar/AppBar';
 
 export default function ShopingCart() {
     const [open, setOpen] = React.useState(false);
     const navigate = useNavigate();
     const [product, setProduct] = useState([])
     const [data, setData] = useState([]);
+    const [cartLength, setCartLength] = React.useState([]);
+    const getCartItmes = async () => {
+        const response = await axios.get(
+            'http://localhost:8000/cart/');
+        setCartLength(response.data);
+        console.log('cart lenth', response.data);
+    }
     const setSaveData = (i) => {
         setData(i.id);
         setOpen(true);
@@ -30,7 +38,8 @@ export default function ShopingCart() {
             'http://localhost:8000/cart/' + data);
         setOpen(false);
         getProduct();
-        toast.success(`Product Deleted Succesfully`)
+        getCartItmes();
+        toast.success(`Product Deleted Succesfully`);
 
     };
     const close = () => {
@@ -38,17 +47,19 @@ export default function ShopingCart() {
     }
     useEffect(() => {
         getProduct();
+        getCartItmes()
     }, []);
     return (
         <>
             <Toaster />
+            <ResponsiveAppBar cartLength={cartLength} />
 
             <div className='container'>
-                <div class="back-button" onClick={() => goBack()}>
-                    <div class="arrow-wrap">
-                        <span class="arrow-part-1"></span>
-                        <span class="arrow-part-2"></span>
-                        <span class="arrow-part-3"></span>
+                <div className="back-button" onClick={() => goBack()}>
+                    <div className="arrow-wrap">
+                        <span className="arrow-part-1"></span>
+                        <span className="arrow-part-2"></span>
+                        <span className="arrow-part-3"></span>
                     </div>
                 </div>
                 <div className="page mt-5">

@@ -21,6 +21,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
+import ResponsiveAppBar from '../AppBar/AppBar';
 
 function Copyright(props) {
     return (
@@ -83,9 +84,11 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 const mdTheme = createTheme();
 function DashboardContent() {
+    const [cartLength, setCartLength] = React.useState([]);
     const [open, setOpen] = React.useState(true);
     return (
         <>
+            <ResponsiveAppBar cartLength={cartLength} />
             <ThemeProvider theme={mdTheme}>
                 <Box sx={{ display: 'flex' }}>
                     <CssBaseline />
@@ -108,8 +111,8 @@ function DashboardContent() {
                             >
                                 <Typography>Dashboard</Typography>
                             </AccordionSummary>
-                            <AccordionDetails>
-                                <LinkRouterDom to='/order/details'>
+                            <AccordionDetails >
+                                <LinkRouterDom to='/order/details' >
                                     <ListItemButton>
                                         <ListItemIcon>
                                             <ShoppingCartIcon />

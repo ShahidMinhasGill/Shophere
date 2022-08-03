@@ -58,7 +58,7 @@ export default function Login() {
                 if (user.password === password && user.email === user.email) {
                     localStorage.setItem('userId', user.id);
                     navigate('/admindashboard');
-                    window.location.reload(true);
+                    // window.location.reload(true);
 
                 } else {
                     toast.error(`Dosn't Matched Email or Password!`)
@@ -67,7 +67,7 @@ export default function Login() {
                 if (user.password === password && user.email === user.email) {
                     localStorage.setItem('userId', user.id);
                     navigate('/');
-                    window.location.reload(true);
+                    // window.location.reload(true);
 
 
                 } else {
@@ -81,6 +81,9 @@ export default function Login() {
 
 
     };
+    const goBack = () => {
+        navigate('/');
+    }
     const checkEmail = (serverUsers, formData) => {
         const user = serverUsers.find(user => user.email === formData.email); // extract the email from the formData
         if (user) return user;
@@ -88,6 +91,13 @@ export default function Login() {
     return (
         <ThemeProvider theme={theme}>
             <Container style={{ background: 'white', borderRadius: '16px' }} component="main" maxWidth="xs">
+                <div className="back-button" onClick={() => goBack()}>
+                    <div className="arrow-wrap">
+                        <span className="arrow-part-1"></span>
+                        <span className="arrow-part-2"></span>
+                        <span className="arrow-part-3"></span>
+                    </div>
+                </div>
                 <CssBaseline />
                 <Box
                     sx={{
