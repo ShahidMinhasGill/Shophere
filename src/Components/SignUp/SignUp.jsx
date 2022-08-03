@@ -6,7 +6,7 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { createTheme, makeStyles, ThemeProvider } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -15,21 +15,7 @@ import './SignUp.css';
 import axios from 'axios';
 import { create } from 'ipfs-http-client';
 const client = create('https://ipfs.infura.io:5001/api/v0');
-// const useStyles = makeStyles({
-//     input: {
-//         '& input[type=number]': {
-//             '-moz-appearance': 'textfield'
-//         },
-//         '& input[type=number]::-webkit-outer-spin-button': {
-//             '-webkit-appearance': 'none',
-//             margin: 0
-//         },
-//         '& input[type=number]::-webkit-inner-spin-button': {
-//             '-webkit-appearance': 'none',
-//             margin: 0
-//         }
-//     },
-// });
+
 
 const theme = createTheme({
     palette: {
@@ -42,7 +28,6 @@ const theme = createTheme({
 
 
 export default function SignUp() {
-    // const classes = useStyles();
 
     const fullName = React.useRef(null);
     const emailAddress = React.useRef(null);
@@ -51,7 +36,6 @@ export default function SignUp() {
     const pwd = React.useRef(null);
     const newPic = React.useRef(null);
     const [img, setImg] = React.useState('');
-    const [newImg, setNewImg] = React.useState('');
     const [file, setFile] = React.useState(``)
     const navigate = useNavigate();
     const formSchema = Yup.object().shape({
@@ -64,7 +48,6 @@ export default function SignUp() {
                 "Enter a valid email address"
             ),
         mobileNo: Yup.number()
-            // .required('Password is mendatory')
             .min(8, 'Password must be at 8 char long'),
         password: Yup.string()
             .required('Password is mendatory')
@@ -88,7 +71,6 @@ export default function SignUp() {
         const address = homeAddress.current.value
         const phoneNo = mobileNo.current.value
         const password = pwd.current.value
-        // const img = newImg.current.value
         const added = await client.add(file);
         const picUrl = `https://ipfs.infura.io/ipfs/${added.path}`
 

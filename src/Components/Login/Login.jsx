@@ -50,8 +50,6 @@ export default function Login() {
     const onSubmit = async (formData) => {
         const email = emailAddress.current.value
         const password = pwd.current.value
-        console.log("here you have changed to Email", email);
-        console.log("here you have changed to password", password);
         const user = await axios
             .get("http://localhost:8000/users")
             .then((res) => checkEmail(res.data, formData));
@@ -68,7 +66,7 @@ export default function Login() {
             } else if (user) {
                 if (user.password === password && user.email === user.email) {
                     localStorage.setItem('userId', user.id);
-                    navigate('/home');
+                    navigate('/');
                     window.location.reload(true);
 
 

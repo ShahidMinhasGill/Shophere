@@ -30,10 +30,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { Grid } from '@mui/material';
 import { create } from 'ipfs-http-client';
 import toast, { Toaster } from 'react-hot-toast';
-
 const client = create('https://ipfs.infura.io:5001/api/v0');
-const settings = ['Profile', 'Edit Profile', ' Change Password'];
-
 const ResponsiveAppBar = () => {
     const getId = localStorage.getItem('userId');
     const [isLoggedIn, setisLoggedIn] = React.useState(false);
@@ -109,9 +106,6 @@ const ResponsiveAppBar = () => {
                         "img": img,
                     });
                 }
-
-
-                // getAllProduct();
             } catch (error) {
                 console.log('data not update', error);
             }
@@ -122,9 +116,7 @@ const ResponsiveAppBar = () => {
         }
         upadateData();
     };
-    // const logIn = () => {
-    //     setisLoggedIn(true);
-    // };
+
     const logOut = () => {
         localStorage.removeItem('userId');
         setisLoggedIn(false);
@@ -140,16 +132,11 @@ const ResponsiveAppBar = () => {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
 
-    const handleOpenNavMenu = (event) => {
-        setAnchorElNav(event.currentTarget);
-    };
+
     const handleOpenUserMenu = (event) => {
         setAnchorElUser(event.currentTarget);
     };
 
-    const handleCloseNavMenu = () => {
-        setAnchorElNav(null);
-    };
     function onChange(e) {
         setpic1(true)
         setFile(e.target.files[0])
@@ -197,9 +184,10 @@ const ResponsiveAppBar = () => {
                         >
                         </Typography>
 
-                        <LinkRouterDom to='/'>
-                            <img src={logo} onClick={logOut} height='80px' sx={{ mt: 4 }} alt="" />
-                        </LinkRouterDom>
+
+                        <Typography>
+                            <img src={logo} height='80px' sx={{ mt: 4 }} alt="" />
+                        </Typography>
                         <Typography
                             variant="h5"
                             noWrap
@@ -234,8 +222,13 @@ const ResponsiveAppBar = () => {
 
                                 </Tooltip>
 
-                            </Box>}
-
+                            </Box>
+                        }
+                        {getId == null &&
+                            <LinkRouterDom to='/login'>
+                                <Button >Login</Button>
+                            </LinkRouterDom>
+                        }
                         <Box sx={{ mx: 4, flexGrow: 0 }}>
                             <Tooltip title="Open settings">
                                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>

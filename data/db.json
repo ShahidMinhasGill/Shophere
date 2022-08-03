@@ -6,7 +6,7 @@
       "address": "lahore",
       "password": "111",
       "phoneNo": "34343434",
-      "img": "https://ipfs.infura.io/ipfs/QmRLeGuU4kG84nGnDVfz5CWF2cwd6XKasMg4BPMHC5batq",
+      "img": "https://ipfs.infura.io/ipfs/QmYrqJgjqEzjz4w8jmAvhMgYkkZqChcw1V9Zf1hn5Rj5QN",
       "id": 1
     },
     {
@@ -47,9 +47,9 @@
       "id": 4
     },
     {
-      "title": "outwear",
+      "title": " outerwear jackets",
       "description": "Mens Cotton Jacket  great outerwear jackets",
-      "category": "Clothes",
+      "category": "Electronic",
       "quantity": "344",
       "price": "3434",
       "img": "https://ipfs.infura.io/ipfs/QmTapx29aN34REND5spou6bzzfnZjHG1fxU3vRE7HbRkvh",
@@ -58,23 +58,41 @@
     {
       "title": " jackets",
       "description": "Mens Cotton Jacket  great outerwear jackets",
-      "category": "Watches",
+      "category": "Clothes",
       "quantity": "11",
       "price": "1212",
       "img": "https://ipfs.infura.io/ipfs/QmdsH19HDb1AusmQqtBjYfbT5KHt9giBcP6NNGP4cGQT5z",
       "id": 6
+    },
+    {
+      "title": "eeeeeeeeeeeeeeee",
+      "description": "wwwwwwwwwwwww",
+      "category": "Electronic",
+      "quantity": "2",
+      "price": "2323",
+      "img": "https://ipfs.infura.io/ipfs/Qmb3DGsqSUasnGcH8UczwWUoKVaue76yjCSxxHQQyqetug",
+      "id": 7
+    },
+    {
+      "title": "dse",
+      "description": "ssssssssssssssssssssss",
+      "category": "Clothes",
+      "quantity": "222",
+      "price": "1212",
+      "img": "https://ipfs.infura.io/ipfs/Qmen1Vz3wiLTR3RbhQPXkT6e2ZkbjC1dBcqSHiQn9zGXNp",
+      "id": 8
+    },
+    {
+      "title": "dfdsfd",
+      "description": "sfdsfdsf",
+      "category": "Watches",
+      "quantity": "2",
+      "price": "10",
+      "img": "https://ipfs.infura.io/ipfs/Qmbg3JM2vo9UJWdmWdVXwSaFBNmGn8qHm51R7APE16rNrM",
+      "id": 9
     }
   ],
   "cart": [
-    {
-      "title": " jackets",
-      "description": "Mens Cotton Jacket  great outerwear jackets",
-      "category": "Watches",
-      "quantity": "1",
-      "price": "1212",
-      "img": "https://ipfs.infura.io/ipfs/QmdsH19HDb1AusmQqtBjYfbT5KHt9giBcP6NNGP4cGQT5z",
-      "id": 1
-    },
     {
       "title": "outwear",
       "description": "Mens Cotton Jacket  great outerwear jackets",
@@ -92,6 +110,132 @@
       "price": "222",
       "img": "https://ipfs.infura.io/ipfs/Qma1FpsxN3oPVirfySNPP6FKKE2NEpZHbrH7Gcoi3kmHHc",
       "id": 3
+    },
+    {
+      "title": "outwear",
+      "description": "Mens Cotton Jacket  great outerwear jackets",
+      "category": "Clothes",
+      "quantity": "1",
+      "price": "3434",
+      "img": "https://ipfs.infura.io/ipfs/QmTapx29aN34REND5spou6bzzfnZjHG1fxU3vRE7HbRkvh",
+      "id": 4
+    },
+    {
+      "title": "outwear",
+      "description": "Mens Cotton Jacket  great outerwear jackets",
+      "category": "Clothes",
+      "quantity": "1",
+      "price": "3434",
+      "img": "https://ipfs.infura.io/ipfs/QmTapx29aN34REND5spou6bzzfnZjHG1fxU3vRE7HbRkvh",
+      "id": 5
+    },
+    {
+      "title": "Hair ",
+      "description": "Mens Cotton Jacket  great outerwear jackets",
+      "category": "Watches",
+      "quantity": "1",
+      "price": "222",
+      "img": "https://ipfs.infura.io/ipfs/Qma1FpsxN3oPVirfySNPP6FKKE2NEpZHbrH7Gcoi3kmHHc",
+      "id": 6
+    },
+    {
+      "title": "Hair ",
+      "description": "Mens Cotton Jacket  great outerwear jackets",
+      "category": "Watches",
+      "quantity": "1",
+      "price": "222",
+      "img": "https://ipfs.infura.io/ipfs/Qma1FpsxN3oPVirfySNPP6FKKE2NEpZHbrH7Gcoi3kmHHc",
+      "id": 8
+    },
+    {
+      "title": "outwear",
+      "description": "Mens Cotton Jacket  great outerwear jackets",
+      "category": "Clothes",
+      "quantity": "1",
+      "price": "3434",
+      "img": "https://ipfs.infura.io/ipfs/QmTapx29aN34REND5spou6bzzfnZjHG1fxU3vRE7HbRkvh",
+      "id": 10
+    },
+    {
+      "title": "Hair ",
+      "description": "Mens Cotton Jacket  great outerwear jackets",
+      "category": "Watches",
+      "quantity": "1",
+      "price": "222",
+      "img": "https://ipfs.infura.io/ipfs/Qma1FpsxN3oPVirfySNPP6FKKE2NEpZHbrH7Gcoi3kmHHc",
+      "id": 11
+    },
+    {
+      "title": "Hair ",
+      "description": "Mens Cotton Jacket  great outerwear jackets",
+      "category": "Watches",
+      "quantity": "1",
+      "price": "222",
+      "img": "https://ipfs.infura.io/ipfs/Qma1FpsxN3oPVirfySNPP6FKKE2NEpZHbrH7Gcoi3kmHHc",
+      "id": 12
+    },
+    {
+      "title": "Hair ",
+      "description": "Mens Cotton Jacket  great outerwear jackets",
+      "category": "Watches",
+      "quantity": "1",
+      "price": "222",
+      "img": "https://ipfs.infura.io/ipfs/Qma1FpsxN3oPVirfySNPP6FKKE2NEpZHbrH7Gcoi3kmHHc",
+      "id": 13
+    },
+    {
+      "title": "outwear",
+      "description": "Mens Cotton Jacket  great outerwear jackets",
+      "category": "Clothes",
+      "quantity": "1",
+      "price": "3434",
+      "img": "https://ipfs.infura.io/ipfs/QmTapx29aN34REND5spou6bzzfnZjHG1fxU3vRE7HbRkvh",
+      "id": 14
+    },
+    {
+      "title": "Hair ",
+      "description": "Mens Cotton Jacket  great outerwear jackets",
+      "category": "Watches",
+      "quantity": "1",
+      "price": "222",
+      "img": "https://ipfs.infura.io/ipfs/Qma1FpsxN3oPVirfySNPP6FKKE2NEpZHbrH7Gcoi3kmHHc",
+      "id": 15
+    },
+    {
+      "title": "outwear",
+      "description": "Mens Cotton Jacket  great outerwear jackets",
+      "category": "Clothes",
+      "quantity": "1",
+      "price": "3434",
+      "img": "https://ipfs.infura.io/ipfs/QmTapx29aN34REND5spou6bzzfnZjHG1fxU3vRE7HbRkvh",
+      "id": 16
+    },
+    {
+      "title": " jackets",
+      "description": "Mens Cotton Jacket  great outerwear jackets",
+      "category": "Watches",
+      "quantity": "1",
+      "price": "1212",
+      "img": "https://ipfs.infura.io/ipfs/QmdsH19HDb1AusmQqtBjYfbT5KHt9giBcP6NNGP4cGQT5z",
+      "id": 17
+    },
+    {
+      "title": "Hair ",
+      "description": "Mens Cotton Jacket  great outerwear jackets",
+      "category": "Watches",
+      "quantity": "1",
+      "price": "222",
+      "img": "https://ipfs.infura.io/ipfs/Qma1FpsxN3oPVirfySNPP6FKKE2NEpZHbrH7Gcoi3kmHHc",
+      "id": 18
+    },
+    {
+      "title": " outerwear jackets",
+      "description": "Mens Cotton Jacket  great outerwear jackets",
+      "category": "Electronic",
+      "quantity": "1",
+      "price": "3434",
+      "img": "https://ipfs.infura.io/ipfs/QmTapx29aN34REND5spou6bzzfnZjHG1fxU3vRE7HbRkvh",
+      "id": 19
     }
   ]
 }

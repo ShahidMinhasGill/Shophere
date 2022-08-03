@@ -4,21 +4,17 @@ import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { Grid } from '@mui/material';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as Yup from 'yup';
 import toast, { Toaster } from 'react-hot-toast';
 
 export default function ForgetPassword({ modalShow, setModalShow }) {
-    const [open, setOpen] = React.useState(false);
     const emailAddress = React.useRef(null);
     const pwd = React.useRef(null);
-    const navigate = useNavigate();
     const formSchema = Yup.object().shape({
         email: Yup.string()
             .required("Email is mandatory")
@@ -34,14 +30,12 @@ export default function ForgetPassword({ modalShow, setModalShow }) {
             .oneOf([Yup.ref('password')], 'Passwords does not match'),
     })
     const formOptions = { resolver: yupResolver(formSchema) }
-    const { register, handleSubmit, reset, formState } = useForm(formOptions)
+    const { register, handleSubmit, formState } = useForm(formOptions)
     const { errors } = formState
 
     const onSubmit = async (formData) => {
         const email = emailAddress.current.value
         const password = pwd.current.value
-        // console.log("here you have changed to Email", email);
-        // console.log("here you have changed to password", password);
         const user = await axios
             .get("http://localhost:8000/users")
             .then((res) => checkEmail(res.data, formData));
@@ -80,9 +74,6 @@ export default function ForgetPassword({ modalShow, setModalShow }) {
             }} open={modalShow} onClose={handleClose}>
                 <DialogTitle> Enter Email And New Password</DialogTitle>
                 <DialogContent >
-                    {/* <DialogContentText>
-                        Enter your Email
-                    </DialogContentText> */}
                     <Grid item xs={12} sx={{ mt: 3 }}>
                         <TextField
                             required

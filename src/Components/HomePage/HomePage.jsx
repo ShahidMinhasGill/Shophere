@@ -1,22 +1,14 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import Collapse from '@mui/material/Collapse';
-import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import { red } from '@mui/material/colors';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import ShareIcon from '@mui/icons-material/Share';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-import logo from '../../Asets/logo.png'
 import { Box, Container } from '@mui/system';
-import { AppBar, Button, Grid } from '@mui/material';
+import { Button, Grid } from '@mui/material';
 import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
 
@@ -33,9 +25,7 @@ const ExpandMore = styled((props) => {
 
 export default function HomePage() {
     const getId = localStorage.getItem('userId');
-
     const [product, setProduct] = React.useState([]);
-    const [expanded, setExpanded] = React.useState(false);
     const getProductOnclick = async () => {
         const response = await axios.get(
             'http://localhost:8000/products/');
@@ -58,12 +48,7 @@ export default function HomePage() {
         };
         addData();
 
-        // handleAddToCart();
     }
-
-    const handleExpandClick = () => {
-        setExpanded(!expanded);
-    };
     React.useEffect(() => {
         getProductOnclick()
     }, []);

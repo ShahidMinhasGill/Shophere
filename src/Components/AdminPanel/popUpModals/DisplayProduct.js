@@ -4,15 +4,11 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { Link } from '@mui/material';
-import { Link as LinkRouterDom, useParams } from 'react-router-dom';
-import UpdateProduct from './UpdateProduct';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
@@ -20,48 +16,17 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { useNavigate } from 'react-router-dom';
 import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import axios from 'axios';
-import FetchProducts from './FetchProduct';
-import HomePage from '../../HomePage/HomePage';
 import toast, { Toaster } from 'react-hot-toast';
-
 import { create } from 'ipfs-http-client';
-import Dashboard from '../Dashboard';
 const client = create('https://ipfs.infura.io:5001/api/v0');
-const Item = ({ name, category, product }) => (
-    <div className="item-container">
-        {/* <div>
-            <span className="item-label">Name:</span>
-            {name}
-        </div> */}
-        {/* <div>
-            <span className="item-label">Name:</span>
-            {product}
-        </div> */}
-        <div>
-            <span className="item-label">Category:</span>
-            {category}
-        </div>
-    </div>
-);
+
 export default function DisplayProduct() {
-    // const { id } = useParams();
-    let newtitle = React.useRef(null);
-    let newdescription = React.useRef(null);
-    let newCategory = React.useRef(null);
-    let newquantity = React.useRef(null);
-    let newprice = React.useRef(null);
-    let newPic = React.useRef(null);
-    const [modalShow, setModalShow] = React.useState(false);
     const [title, setTitle] = React.useState('');
     const [description, setDescription] = React.useState('');
     const [category, setCategory] = React.useState('');
@@ -69,8 +34,6 @@ export default function DisplayProduct() {
     const [price, setPrice] = React.useState('');
     const [img, setImg] = React.useState('');
     const [getId, setId] = React.useState('');
-    const [loading, setLoading] = React.useState(false);
-    const [sportList, setSportList] = React.useState([]);
     const [selectedCategory, setSelectedCategory] = React.useState();
     const [file, setFile] = React.useState(``)
     const [pic1, setpic1] = React.useState(false)
@@ -79,12 +42,10 @@ export default function DisplayProduct() {
     const [product, setProduct] = React.useState([]);
 
     const setSaveData = (i) => {
-        console.log(i.id, 'set data');
         setData(i.id);
         setDelOpen(true);
     }
 
-    const navigate = useNavigate();
 
 
     const handleChange = (event) => {
@@ -94,12 +55,8 @@ export default function DisplayProduct() {
         setpic1(true)
         setFile(e.target.files[0])
         setImg(URL.createObjectURL(e.target.files[0]));
-        console.log('onchange function', e.target.files[0].name);
-
     }
-    // const handleClick = () => {
-    //     console.log(product);
-    // }
+
 
 
     const [open, setOpen] = React.useState(false);
@@ -109,7 +66,6 @@ export default function DisplayProduct() {
         setProduct(response.data)
     }
     const handleClickOpen = (id) => {
-        console.log('get id', id);
         setOpen(true);
         const getProductOnclick = async () => {
             const response = await axios.get(
@@ -153,7 +109,6 @@ export default function DisplayProduct() {
                         "img": picUrl,
                     });
                 } else {
-                    // let fffPic = img;
                     const response = await axios.put(' http://localhost:8000/products/' + getId, {
                         "title": title,
                         "description": description,
@@ -162,17 +117,12 @@ export default function DisplayProduct() {
                         "price": price,
                         "img": img,
                     });
-                    console.log('update data', response.data);
                 }
-
-
-                // getAllProduct();
             } catch (error) {
                 console.log('data not update', error);
             }
             getAllProduct();
             setOpen(false);
-            // window.location.reload(true)
         }
         upadateData();
     };
@@ -183,30 +133,7 @@ export default function DisplayProduct() {
         setDelOpen(false);
     };
 
-    var defaultSports = [
-        {
-            name: "Table Tennis",
-            category: "Watches"
-        },
-        {
-            name: "T-Shirt",
-            category: "Clothes"
-        },
-        {
-            name: "Swimming",
-            category: "Electronic"
-        },
-        {
-            name: "Chess",
-            category: "Watches"
-        },
-        {
-            name: "Men Dress",
-            category: "Clothes"
-        }
-    ];
     function getFilteredList() {
-        // Avoid filter when selectedCategory is null
         if (!selectedCategory) {
             return product;
         }
@@ -217,36 +144,17 @@ export default function DisplayProduct() {
     function handleCategoryChange(event) {
         setSelectedCategory(event.target.value);
     }
-    const handleOnChange = () => {
-        handleCategoryChange();
-        // handleChange();
-    }
-    // console.log(defaultSports);
     React.useEffect(() => {
         getAllProduct();
     }, []);
     return (
         <div>
-
-
-
-
-
-
-            {/* <div className="sport-list">
-                {filteredList.map((element, index) => (
-                    <Item {...element} key={index} />
-                ))}
-            </div> */}
             <FormControl sx={{ mb: 2, width: '10rem' }}>
                 <InputLabel id="demo-simple-select-label">Category</InputLabel>
                 <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
-                    // value={category}
                     label="Category"
-                    // onChange={handleOnChange}
-                    // onChange={handleChange}
                     onChange={(e) => { handleCategoryChange(e); handleChange(); }}
                 >
                     <MenuItem value="">All</MenuItem>
@@ -256,39 +164,10 @@ export default function DisplayProduct() {
                 </Select>
             </FormControl>
             <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-                {/* <select
-                    name="category-list"
-                    id="category-list"
-                    onChange={handleCategoryChange}
-                >
-                    <option value="">All</option>
-                    <option value="Clothes">Clothes</option>
-                    <option value="Watches">Watches</option>
-                    <option value="Electronic">Electronic</option>
-                </select> */}
-
-                {/* <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">Age</InputLabel>
-                    <Select
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        value={category}
-                        label="Age"
-                        onChange={handleChange}
-                    >
-                        <MenuItem value={10}>Ten</MenuItem>
-                        <MenuItem value={20}>Twenty</MenuItem>
-                        <MenuItem value={30}>Thirty</MenuItem>
-                    </Select>
-                </FormControl> */}
                 {filteredList.map((i) => {
-
-                    // <Item {...element} key={i} />
                     return (
                         <>
-
                             <Grid item xs={2} sm={4} md={4} key={i}>
-
                                 <Card sx={{ maxWidth: 345 }}>
                                     <CardMedia
                                         component="img"
@@ -310,14 +189,11 @@ export default function DisplayProduct() {
                                         </Typography>
                                     </CardContent>
                                     <CardActions disableSpacing>
-
-                                        {/* <LinkRouterDom to={`/update/${i.id}`} > */}
                                         <IconButton aria-label="add to favorites"
 
                                         >
                                             <EditIcon onClick={() => handleClickOpen(i.id)} />
                                         </IconButton>
-                                        {/* </LinkRouterDom> */}
                                         <IconButton aria-label="share">
                                             <DeleteIcon onClick={() => setSaveData(i)} />
                                         </IconButton>
@@ -325,7 +201,6 @@ export default function DisplayProduct() {
                                             <DialogTitle>Are you Sure Cancel This Order</DialogTitle>
                                             <Box position="absolute" top={0} right={0}>
                                                 <IconButton>
-                                                    {/* <Close /> */}
                                                 </IconButton>
                                             </Box>
                                             <DialogActions>
@@ -343,8 +218,6 @@ export default function DisplayProduct() {
 
                                 </Card>
                             </Grid>
-
-                            {/* <UpdateProduct modalShow={modalShow} setModalShow={setModalShow} /> */}
                             <Dialog open={open} onClose={handleClose}>
                                 <DialogTitle>Update</DialogTitle>
                                 <DialogContent>
@@ -362,7 +235,6 @@ export default function DisplayProduct() {
                                                     fullWidth
                                                     id="title"
                                                     label="Title"
-                                                    // defaultValue={user1.name}
                                                     autoFocus
                                                     value={title}
                                                     onChange={e => setTitle(e.target.value)}
@@ -422,7 +294,6 @@ export default function DisplayProduct() {
                                             <Grid item xs={12}>
                                                 <TextField
                                                     fullWidth
-                                                    // type='number'
                                                     id="price"
                                                     label="Price "
                                                     name="Price"

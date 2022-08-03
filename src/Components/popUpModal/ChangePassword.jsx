@@ -4,11 +4,9 @@ import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { Grid } from '@mui/material';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as Yup from 'yup';
@@ -16,11 +14,8 @@ import toast, { Toaster } from 'react-hot-toast';
 
 export default function ChangePassword({ modalShow, setModalShow }) {
     const getId = localStorage.getItem('userId');
-
-    const [open, setOpen] = React.useState(false);
     const emailAddress = React.useRef(null);
     const pwd = React.useRef(null);
-    const navigate = useNavigate();
     const formSchema = Yup.object().shape({
         email: Yup.string()
             .required("Email is mandatory")
@@ -43,14 +38,10 @@ export default function ChangePassword({ modalShow, setModalShow }) {
         const email = emailAddress.current.value
         const password = pwd.current.value
         const curruntId = getId
-        console.log("here you have changed to Email", email);
-        console.log("here you have changed to password", password);
-        console.log("here you have changed to id", curruntId);
         const user = await axios
             .get("http://localhost:8000/users")
             .then((res) => checkEmail(res.data, formData));
         if (user) {
-            console.log('changeee', user);
             if (user.email === email && user.id == curruntId) {
                 await axios
                     .patch("http://localhost:8000/users/" + user.id, {
@@ -87,9 +78,6 @@ export default function ChangePassword({ modalShow, setModalShow }) {
             }} open={modalShow} onClose={handleClose}>
                 <DialogTitle> Enter Email And New Password</DialogTitle>
                 <DialogContent >
-                    {/* <DialogContentText>
-                        Enter your Email
-                    </DialogContentText> */}
                     <Grid item xs={12} sx={{ mt: 3 }}>
                         <TextField
                             required

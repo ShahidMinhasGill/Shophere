@@ -22,13 +22,12 @@ export default function ShopingCart() {
 
     };
     const goBack = () => {
-        navigate('/home');
+        navigate('/');
     }
     const handleRemove = async (data) => {
         setOpen(true);
         const response = await axios.delete(
             'http://localhost:8000/cart/' + data);
-        console.log(response.data);
         setOpen(false);
         getProduct();
         toast.success(`Product Deleted Succesfully`)
@@ -43,7 +42,6 @@ export default function ShopingCart() {
     return (
         <>
             <Toaster />
-
 
             <div className='container'>
                 <div class="back-button" onClick={() => goBack()}>
@@ -81,12 +79,9 @@ export default function ShopingCart() {
 
                                         <li className="cart_product_col">
                                             <p>{i.title}</p>
-                                            {/* <span><strong>Size: </strong>XL</span> */}
                                         </li>
 
                                         <li className="cart_options_col">
-                                            {/* <span>Quantity: </span> */}
-                                            {/* <p>{i.quantity}</p> */}
                                             <input type="number" min="1" value={i.quantity} />
                                         </li>
 
@@ -107,9 +102,6 @@ export default function ShopingCart() {
                                             </IconButton>
 
                                         </Box>
-                                        {/* <DialogContent>
-                                            <Typography>Are you Sure Cancel</Typography>
-                                        </DialogContent> */}
                                         <DialogActions>
                                             <Button onClick={close} color="primary" variant="contained">
                                                 Cancel

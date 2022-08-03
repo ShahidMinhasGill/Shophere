@@ -7,15 +7,11 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
 import axios from 'axios';
 import { create } from 'ipfs-http-client';
 const client = create('https://ipfs.infura.io:5001/api/v0');
@@ -69,14 +65,10 @@ export default function AddProduct() {
                     "img": picUrl,
                 });
                 console.log('Add data', response.data);
-                // setLoading(false);
-                // getAllProduct();
                 navigate('/admindashboard')
             } catch (error) {
                 console.log('data not Add', error);
             }
-
-            // setOpen(false);
 
         }
         addData();
@@ -124,9 +116,6 @@ export default function AddProduct() {
                                         onChange={e => setTitle(e.target.value)}
                                     />
                                 </Grid>
-
-
-
                                 <Grid item xs={12}>
                                     <TextField
                                         fullWidth
@@ -139,7 +128,6 @@ export default function AddProduct() {
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
-
                                     <FormControl sx={{}} fullWidth required>
                                         <InputLabel id="demo-select-small">Select Category</InputLabel>
                                         <Select
@@ -198,28 +186,9 @@ export default function AddProduct() {
                                         )
                                     }
                                 </Grid>
-
                             </Grid>
-                            {/* <Button style={{ background: '#2E3B55' }}
-                                    type="submit"
-                                    fullWidth
-                                    variant="contained"
-                                    sx={{ mt: 3, mb: 2 }}
-                                >
-                                    Sign Up
-                                </Button>
-
-                                <Grid container sx={{ mt: 3 }} justifyContent="flex-end">
-                                    <Grid item>
-                                        Already have an account?
-                                        <Link to='/' variant="body2">
-                                            Sign in
-                                        </Link>
-                                    </Grid>
-                                </Grid> */}
                         </Box>
                     </Box>
-
                     {!loading &&
                         <Button style={{ background: '#2E3B55' }}
                             type="submit"
@@ -230,8 +199,6 @@ export default function AddProduct() {
                         >
                             Add Products
                         </Button>
-                        // <Button
-                        //     onClick={handleSubmit}>Submit</Button>
                     }
                     {loading &&
                         <Button style={{ background: '#2E3B55' }}
@@ -244,9 +211,7 @@ export default function AddProduct() {
                         >
                             Add Products
                         </Button>
-                        // <Button
-                        //     disabled
-                        //     onClick={handleSubmit}>Submiting....</Button>
+
                     }
                 </Container>
 
